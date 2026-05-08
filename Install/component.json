@@ -1,0 +1,51 @@
+{
+	"name" : "Notifications",
+	"route" : "system/notifications",
+	"description" : "<p>Manage notifications via this component</p>",
+	"module_type" : "components",
+	"app_type" : "tms",
+	"category" : "admin",
+	"version" : "0.0.0",
+	"repo" : "https://github.com/sp-tms/tms-components-admin-systemnotifications",
+	"class" : "Apps\\Tms\\Components\\System\\Notifications\\NotificationsComponent",
+	"dependencies" : 
+	{
+		"core" : 
+		{
+			"name" : "Core",
+			"version" : "0.0.0-rc.15",
+			"repo" : "https://github.com/sp-framework/core"
+		},
+		"apptype" : 
+		{
+			"name" : "Transport Management System",
+			"version" : "0.0.0",
+			"repo" : "https://github.com/sp-tms/tms"
+		},
+		"packages" : [],
+		"middlewares" : [],
+		"views" : [],
+		"externals" : 
+		{
+			"composer" : 
+			{
+				"require" : []
+			},
+			"config" : 
+			{
+				"allow-plugins" : []
+			},
+			"extra" : 
+			{
+				"patches" : []
+			}
+		}
+	},
+	"menu" : "false",
+	"widgets" : [],
+	"settings" : 
+	{
+		"mandatory" : true,
+		"needAuth" : "mandatory"
+	}
+}
