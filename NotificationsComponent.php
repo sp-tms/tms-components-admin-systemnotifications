@@ -152,7 +152,7 @@ class NotificationsComponent extends BaseComponent
             $profile = $this->basepackages->profiles->getProfile($data['created_by']);
 
             if ($profile) {
-                $data['created_by'] = $profile['full_name'];
+                $data['created_by'] = $profile['contact']['full_name'];
             } else {
                 $data['created_by'] = 'System';
             }
