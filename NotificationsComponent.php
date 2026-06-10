@@ -132,13 +132,15 @@ class NotificationsComponent extends BaseComponent
     {
         $routeLinks = [];
 
-        foreach ($this->modules->packages->packages as $packageKey => $package) {
+        $packages = $this->modules->packages->getPackagesForAppType($this->app['app_type']);
+
+        foreach ($packages as $packageKey => $package) {
             if ($package['settings'] && $package['settings'] !== '' && $package['settings'] !== '[]') {
                 if (!is_array($package['settings'])) {
                     $package['settings'] = $this->helper->decode($package['settings'], true);
                 }
                 if (isset($package['settings']['componentRoute'])) {
-                    $routeLinks[$package['name']] = $package['settings']['componentRoute'];
+                    $routeLinks[strtolower($package['name'])] = strtolower($package['settings']['componentRoute']);
                 }
             }
         }
@@ -166,12 +168,18 @@ class NotificationsComponent extends BaseComponent
     protected function generateLinkButton($rowId, $data)
     {
         if ($data['package_row_id']) {
-            if (array_key_exists($data['package_name'], $this->packageLinks())) {
-                $data['package_row_id'] =
-                    '<a id="' . strtolower($this->app['route']) . '-' . strtolower($this->componentName) . '-access-' . $rowId . '" href="' .  $this->links->url($this->packageLinks()[$data['package_name']] . '/q/id/' . $data['package_row_id']) . '" type="button" data-id="' . $data['id'] . '" data-rowid="' . $rowId . '" class="text-white btn btn-primary btn-xs rowAccess text-uppercase contentAjaxLink">
-                        <i class="fas fa-fw fa-xs fa-external-link-alt"></i>
-                    </a>';
+            $link = '#';
+
+            if (array_key_exists(strtolower($data['package_name']), $this->packageLinks())) {
+                $link = $this->links->url($this->packageLinks()[$data['package_name']] . '/q/id/' . $data['package_row_id']);
+            } else if ($key = array_search(strtolower($data['package_name']), $this->packageLinks())) {
+                $link = $this->links->url($this->packageLinks()[$key] . '/q/id/' . $data['package_row_id']);
             }
+
+            $data['package_row_id'] =
+                '<a id="' . strtolower($this->app['route']) . '-' . strtolower($this->componentName) . '-access-' . $rowId . '" href="' . $link . '" type="button" data-id="' . $data['id'] . '" data-rowid="' . $rowId . '" class="text-white btn btn-primary btn-xs rowAccess text-uppercase contentAjaxLink">
+                    <i class="fas fa-fw fa-xs fa-external-link-alt"></i>
+                </a>';
         }
 
         return $data;
