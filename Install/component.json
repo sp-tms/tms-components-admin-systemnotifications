@@ -5,7 +5,7 @@
 	"module_type" : "components",
 	"app_type" : "tms",
 	"category" : "admin",
-	"version" : "0.4.0",
+	"version" : "0.5.0",
 	"repo" : "https://github.com/sp-tms/tms-components-admin-systemnotifications",
 	"class" : "Apps\\Tms\\Components\\System\\Notifications\\NotificationsComponent",
 	"dependencies" : 
