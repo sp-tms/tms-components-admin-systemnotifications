@@ -24,7 +24,14 @@
 		},
 		"packages" : [],
 		"middlewares" : [],
-		"views" : [],
+		"views" : 
+		[
+			{
+				"name" : "SystemNotifications",
+				"version" : "0.0.0",
+				"repo" : "https://github.com/sp-tms/tms-views-tools-default-systemnotifications"
+			}
+		],
 		"externals" : 
 		{
 			"composer" : 
@@ -43,6 +50,7 @@
 	},
 	"menu" : "false",
 	"widgets" : [],
+	"filters" : [],
 	"settings" : 
 	{
 		"mandatory" : true,
